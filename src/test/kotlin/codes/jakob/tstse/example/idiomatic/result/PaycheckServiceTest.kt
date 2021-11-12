@@ -33,13 +33,15 @@ internal class PaycheckServiceTest {
                     it.second to it.third
                 }
             )
+            .also {
+            }
             .mapValues {
                 it.value.first()
             }
             .mapKeys {
                 it.key // no-op
             }
-    
+
     private var state3 = mutableMapOf<Developer, Pair<Boolean, Boolean>>()
 
 //    private val state2: List<Triple<Developer, Boolean, Boolean>> =
@@ -49,7 +51,9 @@ internal class PaycheckServiceTest {
         exists.zip(willFail)
             .map { (paycheckExists, willFail) ->
                 Triple(backendDeveloper(), paycheckExists, willFail)
-            } // output = List<Triple<Developer, Boolean, Boolean>>
+            }
+            .also {
+            }
 //            .map {
 //              it.first to (it.second to it.third)
 //            } // output = List<Pair<Developer, Pair<Boolean, Boolean>>>
