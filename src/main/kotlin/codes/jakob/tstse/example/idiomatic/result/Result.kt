@@ -34,14 +34,20 @@ class PaycheckService(
                     this.developer = dev
                 }
                 Result.success(paycheckBuilder)
+                    .also {
+                    }
                     .mapCatching { paycheck ->
                         paycheck.apply {
                             hourlyRate = humanResourcesClient.getHourlyRate(dev)
                             hoursWorked = humanResourcesClient.getHoursWorked(dev, period.range)
                         }
                     }
+                    .also {
+                    }
                     .mapCatching { paycheck ->
                         paycheck.build()
+                    }
+                    .also {
                     }
                     .fold(
                         { paycheck ->
